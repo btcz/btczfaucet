@@ -8,5 +8,7 @@ A bitcoinz/ node: https://github.com/btcz/bitcoinz
 # Installation
 
 `sudo apt install python-pip`
+
 `pip install -r requirements.txt`
+
 `python index.py`
