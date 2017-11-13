@@ -88,8 +88,6 @@ def post():
 
     # Make sure Faucet wallet has enough for donation
     command = ['/home/ubuntu/bitcoinz/src/zcash-cli',
-               '-rpcport=8332',
-               '-conf=/home/ubuntu/.bitcore/data/zcash.conf',
                'getbalance']
 
     try:
@@ -116,8 +114,6 @@ def post():
             
     # At this point, all the checks have been passed. Transfer the btcz to the wallet address.
     command = ['/home/ubuntu/bitcoinz/src/zcash-cli',
-                              '-rpcport=8332',
-                              '-conf=/home/ubuntu/.bitcore/data/zcash.conf',
                               'sendtoaddress',
                               verified_wallet_address,
                               '0.002']
