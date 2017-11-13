@@ -116,7 +116,7 @@ def post():
     command = ['/home/ubuntu/bitcoinz/src/zcash-cli',
                               'sendtoaddress',
                               verified_wallet_address,
-                              DONATION]
+                              "0.15"]
 
     try:
         p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
