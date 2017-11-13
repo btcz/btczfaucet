@@ -11,4 +11,6 @@ A bitcoinz/ node: https://github.com/btcz/bitcoinz
 
 `pip install -r requirements.txt`
 
+`cd db; python seeds.py`
+
 `python index.py`
