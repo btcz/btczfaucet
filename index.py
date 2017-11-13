@@ -99,7 +99,7 @@ def post():
     logger.info("getbalance - Output: %s, Error:%s" % (output.rstrip(), error))
 
     wallet_total = float(output)
-    if wallet_total <= 0.002:
+    if wallet_total <= DONATION:
         return render_template('faucet.html', message='No btcz left in wallet')
     
     # Check IP address within 24hour
@@ -116,7 +116,7 @@ def post():
     command = ['/home/ubuntu/bitcoinz/src/zcash-cli',
                               'sendtoaddress',
                               verified_wallet_address,
-                              '0.002']
+                              DONATION]
 
     try:
         p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -140,4 +140,4 @@ def post():
     return render_template('faucet.html', message=message)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=80)
