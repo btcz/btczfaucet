@@ -1,0 +1,17 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>BitcoinZ Faucet</title>
+</head>
+<body>
+<p>Welcome to the BitcoinZ faucet.</p>
+<p> Please enter your btcz wallet address to receive a random amount 0.002 btcz. </p>
+<p> 
+  <form action="/faucet" method="post">
+    btcz wallet address: <input type="text" name="wallet_address" value="" size="35">
+    <input type="submit" value="Submit">
+  </form>
+<p>To date, the facuet has given {{faucet_total}} btcz to the community. </p>
+<p>[by sk]</p>
+</body>
+</html>
