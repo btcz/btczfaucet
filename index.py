@@ -15,7 +15,7 @@ logger.addHandler(fh)
 
 alphabet = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'
 base_count = len(alphabet)
-DONATION = 0.002
+DONATION = 0.15
 
 def encode(num):
     """ Returns num in a base58-encoded string """
@@ -55,7 +55,7 @@ def index():
         faucet_total = '0.0'
     else:
         faucet_total = faucet_total[0]
-    return render_template('index.html', faucet_total=faucet_total)
+    return render_template('index.html', donation=DONATION, faucet_total=faucet_total)
 
 @app.route('/faucet', methods=['POST'])
 def post():
