@@ -105,7 +105,7 @@ def post():
     # Check IP address within 24hour
     db = sqlite3.connect('db/faucet_db')
     cursor = db.cursor()
-    cursor.execute('SELECT time FROM donations WHERE wallet = ? OR ip = ?', (verified_wallet_address, verified_ip_address))
+    cursor.execute('SELECT time FROM donations WHERE wallet = ? OR ip = ? order by time desc limit 1', (verified_wallet_address, verified_ip_address))
     last_donation_time = cursor.fetchone()
     current_unix_time = time.time()
     if last_donation_time is not None and last_donation_time[0] + 86400 > current_unix_time:
