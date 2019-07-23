@@ -15,7 +15,7 @@ logger.addHandler(fh)
 
 alphabet = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'
 base_count = len(alphabet)
-DONATION = 0.15
+DONATION = 1.0
 
 def encode(num):
     """ Returns num in a base58-encoded string """
@@ -87,14 +87,14 @@ def post():
     verified_ip_address = insecure_ip_address
 
     # Make sure Faucet wallet has enough for donation
-    command = ['/home/ubuntu/bitcoinz/src/zcash-cli',
+    command = ['/home/!USER!/bitcoinz/src/bitcoinz-cli',
                'getbalance']
 
     try:
         p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         output, error = p.communicate()
     except:
-        return render_template('faucet.html', message='Error running zcash-cli')
+        return render_template('faucet.html', message='Error running bitcoinz-cli')
 
     logger.info("getbalance - Output: %s, Error:%s" % (output.rstrip(), error))
 
@@ -113,10 +113,10 @@ def post():
         return render_template('faucet.html', message='Cannot request btcz more than once every 24 hours')        
             
     # At this point, all the checks have been passed. Transfer the btcz to the wallet address.
-    command = ['/home/ubuntu/bitcoinz/src/zcash-cli',
+    command = ['/home/!USER!/bitcoinz/src/bitcoinz-cli',
                               'sendtoaddress',
                               verified_wallet_address,
-                              "0.15"]
+                              "1.0"]
 
     try:
         p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -132,9 +132,9 @@ def post():
 
     db.execute("UPDATE total SET amount = amount + ? WHERE amount > -1;", [DONATION])
     db.commit()
-    
+   
     logger.info("Donated: %s to %s for %s" % (DONATION, verified_wallet_address, verified_ip_address))
-    message = "Follow this transaction: https://sk.bitcoinz.global/tx/%s" % output.strip()
+    message = "Follow this transaction: https://btczexplorer.blockhub.info/tx/%s" % output.strip()
     db.close()
 
     return render_template('faucet.html', message=message)
